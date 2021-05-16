@@ -6,12 +6,14 @@ import Beranda from "./Beranda";
 import Riwayat from "./Riwayat";
 import Kupon from "./Kupon";
 import Akun from "./Akun";
+import IsLogin from "./../Auth/IsLogin";
 
 function Home() {
   const [selectedTab, setSelectedTab] = useState("berandaTab");
 
   return (
     <div className="App">
+      <IsLogin />
       <div style={{ position: "fixed", height: "100%", width: "100%", top: 0 }}>
         <TabBar
           unselectedTintColor="#949494"
@@ -112,12 +114,10 @@ function Home() {
           </TabBar.Item>
           <TabBar.Item
             icon={{
-              uri:
-                "https://zos.alipayobjects.com/rmsportal/asJMfBrNqpMMlVpeInPQ.svg",
+              uri: "https://zos.alipayobjects.com/rmsportal/asJMfBrNqpMMlVpeInPQ.svg",
             }}
             selectedIcon={{
-              uri:
-                "https://zos.alipayobjects.com/rmsportal/gjpzzcrPMkhfEqgbYvmN.svg",
+              uri: "https://zos.alipayobjects.com/rmsportal/gjpzzcrPMkhfEqgbYvmN.svg",
             }}
             title="Akun"
             key="akun"
