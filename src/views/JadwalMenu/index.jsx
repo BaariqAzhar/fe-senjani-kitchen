@@ -6,6 +6,7 @@ import "./index.scss";
 import { useHistory } from "react-router-dom";
 import { Tabs, WhiteSpace, Badge } from "antd-mobile";
 import ListMenu from "./ListMenu";
+import IsLogin from "./../Auth/IsLogin";
 
 const JadwalMenu = () => {
   let history = useHistory();
@@ -19,6 +20,7 @@ const JadwalMenu = () => {
 
   return (
     <div className="App">
+      <IsLogin />
       <button
         onClick={() => {
           history.goBack();
