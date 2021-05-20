@@ -68,6 +68,10 @@ function Login() {
   const clearLocalStorage = () => {
     localStorage.clear();
   };
+
+  const onClikRegister = () => {
+    history.push("/Register");
+  };
   return (
     <div>
       <p>ini background</p>
@@ -93,6 +97,8 @@ function Login() {
       <button onClick={loginProcess}>Masuk</button>
 
       <button onClick={clearLocalStorage}>clear localStorage</button>
+
+      <button onClick={onClikRegister}>belum punya akun</button>
     </div>
   );
 }
