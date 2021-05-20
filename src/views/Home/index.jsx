@@ -3,7 +3,7 @@ import { TabBar } from "antd-mobile";
 import { Button, WhiteSpace, WingBlank } from "antd-mobile";
 import "antd-mobile/dist/antd-mobile.css";
 import Beranda from "./Beranda";
-import Riwayat from "./Riwayat";
+import Pesanan from "./Pesanan";
 import Kupon from "./Kupon";
 import Akun from "./Akun";
 import IsLogin from "./../Auth/IsLogin";
@@ -80,7 +80,7 @@ function Home() {
             }}
             data-seed="logId1"
           >
-            <Riwayat />
+            <Pesanan />
           </TabBar.Item>
           <TabBar.Item
             icon={
