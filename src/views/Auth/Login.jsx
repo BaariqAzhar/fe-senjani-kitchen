@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import { useHistory, Link } from "react-router-dom";
 import axios from "axios";
-import { List, InputItem, WhiteSpace } from "antd-mobile";
-// import { createForm } from 'rc-form';
+import { List, InputItem, WhiteSpace, WingBlank, Button } from "antd-mobile";
 
 import UrlApi from "./../../UrlApi";
+import "./LoginRegister.scss";
+import Logo from "./logo.svg";
 
 function Login() {
   let history = useHistory();
@@ -74,31 +75,44 @@ function Login() {
   };
   return (
     <div>
-      <p>ini background</p>
-      <p>ini logo</p>
-      <h3>Masuk Akun Senjanimu</h3>
+      <div className="container">
+        <div>
+          <div className="backgroundA"></div>
+          <div className="backgroundB"></div>
+        </div>
+        <div className="logo">
+          <img src={Logo} alt="" />
+        </div>
+      </div>
+      <WingBlank>
+        <h3>Masuk Akun Senjanimu</h3>
+        <InputItem
+          placeholder="abc@email.com"
+          type="email"
+          onChange={onChangeEmail}
+        >
+          Email
+        </InputItem>
+        <InputItem
+          placeholder="*****"
+          type="password"
+          onChange={onChangePassword}
+        >
+          Password
+        </InputItem>
+        <WhiteSpace size="md" />
+        <Button type="primary" onClick={loginProcess}>
+          Masuk
+        </Button>
+        <p>
+          Sudah punya akun Senjani ?{"  "}
+          <strong className="onClikRegister" onClick={onClikRegister}>
+            Masuk
+          </strong>
+        </p>
 
-      {/* <h4>Email</h4> */}
-      <InputItem
-        placeholder="abc@email.com"
-        type="email"
-        onChange={onChangeEmail}
-      >
-        Email
-      </InputItem>
-      <InputItem
-        placeholder="*****"
-        type="password"
-        onChange={onChangePassword}
-      >
-        Password
-      </InputItem>
-
-      <button onClick={loginProcess}>Masuk</button>
-
-      <button onClick={clearLocalStorage}>clear localStorage</button>
-
-      <button onClick={onClikRegister}>belum punya akun</button>
+        <button onClick={clearLocalStorage}>clear localStorage</button>
+      </WingBlank>
     </div>
   );
 }
