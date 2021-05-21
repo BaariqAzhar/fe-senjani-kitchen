@@ -9,9 +9,7 @@ const Pesanan = () => {
   let history = useHistory();
   const qs = require("qs");
 
-  const [pelanggan, setPelanggan] = useState(
-    JSON.parse(localStorage.getItem("pelanggan"))
-  );
+  const [pelanggan, setPelanggan] = useState({ id_pelanggan: 0 });
 
   const [apiMixPesanan, setApiMixPesanan] = useState([
     {
@@ -41,6 +39,7 @@ const Pesanan = () => {
   };
   useEffect(() => {
     processApiMixPesanan();
+    setPelanggan(JSON.parse(localStorage.getItem("pelanggan")));
   }, []);
 
   const PesanBoxList = () => {
@@ -58,9 +57,7 @@ const Pesanan = () => {
         <p>{data.keterangan_menu}</p>
         <p>{data.jenis_paket_kupon}</p>
         <p>{data.jenis_nasi}</p>
-        <Button onClick={() => onClickLihatDetail(index)}>
-          Lihat Detail
-        </Button>
+        <Button onClick={() => onClickLihatDetail(index)}>Lihat Detail</Button>
       </div>
     ));
     return <div>{listItems}</div>;

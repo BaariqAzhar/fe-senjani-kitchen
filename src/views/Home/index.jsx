@@ -2,11 +2,20 @@ import { useState } from "react";
 import { TabBar } from "antd-mobile";
 import { Button, WhiteSpace, WingBlank } from "antd-mobile";
 import "antd-mobile/dist/antd-mobile.css";
+
 import Beranda from "./Beranda";
 import Pesanan from "./Pesanan";
 import Kupon from "./Kupon";
 import Akun from "./Akun";
 import IsLogin from "./../Auth/IsLogin";
+import homeImg from "./home.svg";
+import selectedHomeImg from "./selectedHome.svg";
+import offPesanan from "./offPesanan.svg";
+import onPesanan from "./onPesanan.svg";
+import offKupon from "./offKupon.svg";
+import onKupon from "./onKupon.svg";
+import offAkun from "./offAkun.svg";
+import onAkun from "./onAkun.svg";
 
 function Home() {
   const [selectedTab, setSelectedTab] = useState("berandaTab");
@@ -28,8 +37,7 @@ function Home() {
                 style={{
                   width: "22px",
                   height: "22px",
-                  background:
-                    "url(https://zos.alipayobjects.com/rmsportal/sifuoDUQdAFKAVcFGROC.svg) center center /  21px 21px no-repeat",
+                  background: `url(${homeImg}) center center /  21px 21px no-repeat`,
                 }}
               />
             }
@@ -38,8 +46,7 @@ function Home() {
                 style={{
                   width: "22px",
                   height: "22px",
-                  background:
-                    "url(https://zos.alipayobjects.com/rmsportal/iSrlOTqrKddqbOmlvUfq.svg) center center /  21px 21px no-repeat",
+                  background: `url(${selectedHomeImg}) center center /  21px 21px no-repeat`,
                 }}
               />
             }
@@ -57,8 +64,7 @@ function Home() {
                 style={{
                   width: "22px",
                   height: "22px",
-                  background:
-                    "url(https://gw.alipayobjects.com/zos/rmsportal/BTSsmHkPsQSPTktcXyTV.svg) center center /  21px 21px no-repeat",
+                  background: `url(${offPesanan}) center center /  21px 21px no-repeat`,
                 }}
               />
             }
@@ -67,8 +73,7 @@ function Home() {
                 style={{
                   width: "22px",
                   height: "22px",
-                  background:
-                    "url(https://gw.alipayobjects.com/zos/rmsportal/ekLecvKBnRazVLXbWOnE.svg) center center /  21px 21px no-repeat",
+                  background: `url(${onPesanan}) center center /  21px 21px no-repeat`,
                 }}
               />
             }
@@ -88,8 +93,7 @@ function Home() {
                 style={{
                   width: "22px",
                   height: "22px",
-                  background:
-                    "url(https://zos.alipayobjects.com/rmsportal/psUFoAMjkCcjqtUCNPxB.svg) center center /  21px 21px no-repeat",
+                  background: `url(${offKupon}) center center /  21px 21px no-repeat`,
                 }}
               />
             }
@@ -98,8 +102,7 @@ function Home() {
                 style={{
                   width: "22px",
                   height: "22px",
-                  background:
-                    "url(https://zos.alipayobjects.com/rmsportal/IIRLrXXrFAhXVdhMWgUI.svg) center center /  21px 21px no-repeat",
+                  background: `url(${onKupon}) center center /  21px 21px no-repeat`,
                 }}
               />
             }
@@ -113,12 +116,24 @@ function Home() {
             <Kupon />
           </TabBar.Item>
           <TabBar.Item
-            icon={{
-              uri: "https://zos.alipayobjects.com/rmsportal/asJMfBrNqpMMlVpeInPQ.svg",
-            }}
-            selectedIcon={{
-              uri: "https://zos.alipayobjects.com/rmsportal/gjpzzcrPMkhfEqgbYvmN.svg",
-            }}
+            icon={
+              <div
+                style={{
+                  width: "22px",
+                  height: "22px",
+                  background: `url(${offAkun}) center center /  21px 21px no-repeat`,
+                }}
+              />
+            }
+            selectedIcon={
+              <div
+                style={{
+                  width: "22px",
+                  height: "22px",
+                  background: `url(${onAkun}) center center /  21px 21px no-repeat`,
+                }}
+              />
+            }
             title="Akun"
             key="akun"
             selected={selectedTab === "akunTab"}
