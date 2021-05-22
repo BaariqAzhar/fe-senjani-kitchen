@@ -14,6 +14,7 @@ import axios from "axios";
 import IsLogin from "./../Auth/IsLogin";
 import UrlApi from "./../../UrlApi";
 import Menu from "./Menu";
+import arrowLeftImg from "./arrowLeft.svg";
 
 function PilihJadwalMenu() {
   let history = useHistory();
@@ -43,12 +44,15 @@ function PilihJadwalMenu() {
   const [selectedIdMenu, setSelectedIdMenu] = useState([]);
   const RenderListMenu = () => {
     const listItems = dataApiShowAllMenu.map((data) => (
-      <div onClick={() => onClickCheckbox(data.id_menu)}>
-        <Menu
-          selectedIdMenu={selectedIdMenu}
-          isChecked={selectedIdMenu.includes(data.id_menu)}
-          data={data}
-        />
+      <div>
+        <div onClick={() => onClickCheckbox(data.id_menu)}>
+          <Menu
+            selectedIdMenu={selectedIdMenu}
+            isChecked={selectedIdMenu.includes(data.id_menu)}
+            data={data}
+          />
+        </div>
+        <WhiteSpace />
       </div>
     ));
     return <List>{listItems}</List>;
@@ -90,31 +94,31 @@ function PilihJadwalMenu() {
   return (
     <div>
       <IsLogin />
-      <button
-        onClick={() => {
-          localStorage.removeItem("selectedKuponPelanggan");
-          history.goBack();
-        }}
-      >
-        Go Back
-      </button>
-      <h4>Pakai Kupon</h4>
-      <p>list jadwal ada disini</p>
-      <RenderListMenu />
-      <p>
-        jumlah kupon tersedia: {selectedKuponPelanggan.jumlah_kupon_tersisa}
-      </p>
-      <p>kupon terpakai: {selectedIdMenu.length}</p>
-      <p>
-        kupon tersisa:
-        {parseInt(selectedKuponPelanggan.jumlah_kupon_tersisa) -
-          selectedIdMenu.length}
-      </p>
+      <div style={{ display: "flex", backgroundColor: "white" }}>
+        <img
+          onClick={() => {
+            history.goBack();
+          }}
+          style={{ marginLeft: "10px", marginRight: "10px" }}
+          src={arrowLeftImg}
+          alt=""
+        />
+        <h1>Gunakan Kupon</h1>
+      </div>
       <WingBlank>
-        <Button type="primary" onClick={onClickNext}>
-          Lanjutkan Mengisi Detail Pengantaran
-        </Button>
-        <WhiteSpace />
+        <h4>
+          Jumlah kupon tersedia : {selectedKuponPelanggan.jumlah_kupon_tersisa}
+        </h4>
+        <h4>Kupon terpakai : {selectedIdMenu.length}</h4>
+        {selectedIdMenu.length > 0 ? (
+          <Button type="primary" onClick={onClickNext}>
+            Lanjutkan Mengisi Form Pemesanan
+          </Button>
+        ) : (
+          <div></div>
+        )}
+        <WhiteSpace size="lg" />
+        <RenderListMenu />
       </WingBlank>
     </div>
   );

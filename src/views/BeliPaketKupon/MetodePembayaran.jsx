@@ -1,13 +1,19 @@
 import { useState, useEffect } from "react";
 import { useHistory, Link } from "react-router-dom";
 import axios from "axios";
-import { List, Radio, Flex, WhiteSpace } from "antd-mobile";
+import { List, Radio, Flex, WhiteSpace, WingBlank, Button } from "antd-mobile";
 import { values } from "lodash";
 
 import IsLogin from "./../Auth/IsLogin";
 import UrlApi from "./../../UrlApi";
+import arrowLeftImg from "./arrowLeft.svg";
+import jenisPaketKupon from "./../Function/jenisPaketKupon";
+import jenisNasi from "./../Function/jenisNasi";
 
 function MetodePembayaran() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   let history = useHistory();
   const qs = require("qs");
   const RadioItem = Radio.RadioItem;
@@ -92,61 +98,73 @@ function MetodePembayaran() {
   return (
     <div>
       <IsLogin />
-      <button
-        onClick={() => {
-          history.goBack();
-        }}
-      >
-        Go Back
-      </button>
-
-      {selectedPaketKuponState ? (
-        <div>
-          <h3>Pilih Metode Pembayaran</h3>
-          <p>Total Pembayaran</p>
-
-          <p>Rp {selectedPaketKuponState.harga}</p>
-          <p>{selectedPaketKuponState.jenis_paket_kupon}</p>
-          <p>{selectedPaketKuponState.jenis_nasi}</p>
-          <p>{selectedPaketKuponState.jumlah_kupon} X</p>
-
-          <h3>mau bayar pakai apa?</h3>
-          <List>
-            <RadioItem
-              key="gopay"
-              checked={checkedState === "gopay"}
-              onChange={() => onChange("gopay")}
-            >
-              GoPay
-            </RadioItem>
-            <RadioItem
-              key="dana"
-              checked={checkedState === "dana"}
-              onChange={() => onChange("dana")}
-            >
-              Dana
-            </RadioItem>
-            <RadioItem
-              key="jenius"
-              checked={checkedState === "jenius"}
-              onChange={() => onChange("jenius")}
-            >
-              Jenius
-            </RadioItem>
-            <RadioItem
-              key="bni"
-              checked={checkedState === "bni"}
-              onChange={() => onChange("bni")}
-            >
-              BNI
-            </RadioItem>
-          </List>
-
-          <button onClick={onClickBayar}>Bayar</button>
+      <div style={{ marginBottom: "150px" }}>
+        <div style={{ backgroundColor: "white", paddingBottom: "10px" }}>
+          <div style={{ display: "flex" }}>
+            <img
+              onClick={() => {
+                history.goBack();
+              }}
+              style={{ marginLeft: "10px", marginRight: "10px" }}
+              src={arrowLeftImg}
+              alt=""
+            />
+            <h1>Metode Pembayaran</h1>
+          </div>
+          <WhiteSpace />
+          <WingBlank>
+            <strong>Total Pembayaran</strong>
+            <h1>Rp {selectedPaketKuponState.harga}</h1>
+            <p>
+              <strong>
+                Kupon{"  "}
+                {jenisPaketKupon(selectedPaketKuponState.jenis_paket_kupon)}
+              </strong>
+            </p>
+            <p> {jenisNasi(selectedPaketKuponState.jenis_nasi)}</p>
+            <p> {selectedPaketKuponState.jumlah_kupon}x</p>
+          </WingBlank>
         </div>
-      ) : (
-        <div></div>
-      )}
+        <WingBlank>
+          <h1>Mau bayar pakai apa?</h1>
+          <div>
+            <List>
+              <RadioItem
+                key="gopay"
+                checked={checkedState === "gopay"}
+                onChange={() => onChange("gopay")}
+              >
+                GoPay
+              </RadioItem>
+              <RadioItem
+                key="dana"
+                checked={checkedState === "dana"}
+                onChange={() => onChange("dana")}
+              >
+                Dana
+              </RadioItem>
+              <RadioItem
+                key="jenius"
+                checked={checkedState === "jenius"}
+                onChange={() => onChange("jenius")}
+              >
+                Jenius
+              </RadioItem>
+              <RadioItem
+                key="bni"
+                checked={checkedState === "bni"}
+                onChange={() => onChange("bni")}
+              >
+                BNI
+              </RadioItem>
+            </List>
+            <WhiteSpace size="lg" />
+            <Button type="primary" onClick={onClickBayar}>
+              Bayar
+            </Button>
+          </div>
+        </WingBlank>
+      </div>
     </div>
   );
 }

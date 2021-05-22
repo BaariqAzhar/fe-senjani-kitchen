@@ -1,15 +1,22 @@
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
+import { Button, Card, WingBlank, WhiteSpace, Flex } from "antd-mobile";
 
 import UrlApi from "./../../../UrlApi";
-import { Button } from "antd-mobile";
+import "./Pesanan.scss";
+import waktuMenu from "../../Function/waktuMenu";
+import jenisNasi from "../../Function/jenisNasi";
+import jenisPaketKupon from "../../Function/jenisPaketKupon";
+import statusPesanan from "../../Function/statusPesanan";
 
 const Pesanan = () => {
   let history = useHistory();
   const qs = require("qs");
 
-  const [pelanggan, setPelanggan] = useState({ id_pelanggan: 0 });
+  const [pelanggan, setPelanggan] = useState(
+    JSON.parse(localStorage.getItem("pelanggan"))
+  );
 
   const [apiMixPesanan, setApiMixPesanan] = useState([
     {
@@ -39,25 +46,39 @@ const Pesanan = () => {
   };
   useEffect(() => {
     processApiMixPesanan();
-    setPelanggan(JSON.parse(localStorage.getItem("pelanggan")));
   }, []);
 
   const PesanBoxList = () => {
     const listItems = apiMixPesanan.map((data, index) => (
-      <div style={{ borderStyle: "solid" }}>
-        <img
-          src={`${UrlApi}assets/fotoMenu/${data.foto_menu}`}
-          alt=""
-          srcset=""
-          style={{ height: "50px" }}
-        />
-        <p>{data.status_pesanan}</p>
-        <p>{data.tanggal_menu}</p>
-        <p>{data.waktu_menu}</p>
-        <p>{data.keterangan_menu}</p>
-        <p>{data.jenis_paket_kupon}</p>
-        <p>{data.jenis_nasi}</p>
-        <Button onClick={() => onClickLihatDetail(index)}>Lihat Detail</Button>
+      <div>
+        <Card>
+          <Card.Header
+            title={`${data.tanggal_menu} | ${waktuMenu(data.waktu_menu)}`}
+          />
+          <Card.Body>
+            <strong>{data.nama_menu}</strong>
+            <Flex clasName="flex">
+              <Flex.Item clasName="flexImg">
+                <img
+                  src={`${UrlApi}assets/fotoMenu/${data.foto_menu}`}
+                  alt=""
+                  srcset=""
+                  style={{ width: "90%" }}
+                />
+              </Flex.Item>
+              <Flex.Item className="flexDescription">
+                <p>{data.keterangan_menu}</p>
+                <p>{jenisNasi(data.jenis_nasi)}</p>
+                <p>{jenisPaketKupon(data.jenis_paket_kupon)}</p>
+                <p>{statusPesanan(data.status_pesanan)}</p>
+              </Flex.Item>
+            </Flex>
+            <Button type="primary" onClick={() => onClickLihatDetail(index)}>
+              Lihat Detail
+            </Button>
+          </Card.Body>
+        </Card>
+        <WhiteSpace size="lg" />
       </div>
     ));
     return <div>{listItems}</div>;
@@ -70,8 +91,10 @@ const Pesanan = () => {
 
   return (
     <div>
-      <h1>you are in Pesanan</h1>
-      <PesanBoxList />
+      <WingBlank>
+        <h1>Riwayat Pesanan</h1>
+        <PesanBoxList />
+      </WingBlank>
     </div>
   );
 };

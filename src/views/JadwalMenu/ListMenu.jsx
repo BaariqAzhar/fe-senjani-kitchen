@@ -1,41 +1,51 @@
 import { useEffect, useState } from "react";
+import { Card, Flex, WhiteSpace, WingBlank, Button } from "antd-mobile";
+import axios from "axios";
+
 import UrlApi from "../../UrlApi";
-import { Flex } from "antd-mobile";
+import waktuMenu from "../Function/waktuMenu";
 
 const ListMenu = () => {
   const [dataState, setDataState] = useState([]);
 
-  const fetchSomething = async () => {
-    const res = await fetch(`${UrlApi}menu`);
-    const data = await res.json();
-    setDataState(data);
+  const processApiShowAllMenu = () => {
+    axios
+      .post(`${UrlApi}menu/showAllMenu`)
+      .then((respone) => setDataState(respone.data));
   };
-
   useEffect(() => {
-    fetchSomething();
+    processApiShowAllMenu();
   }, []);
 
-  const renderListMenu = (data) => {
-    return data.map((item, idx) => (
-      <div key={idx}>
-        <Flex>
-          <Flex.Item>
-            <img
-              src={`${UrlApi}assets/fotoMenu/${item.foto_menu}`}
-              alt=""
-              srcset=""
-              style={{ height: "50px" }}
+  const renderListMenu = (datas) => {
+    return datas.map((data, idx) => {
+      return (
+        <div key={idx}>
+          <WhiteSpace />
+          <Card>
+            <Card.Header
+              title={`${data.tanggal_menu} | ${waktuMenu(data.waktu_menu)}`}
             />
-          </Flex.Item>
-          <Flex.Item>
-            <p>{item.tanggal_menu}</p>
-            <p>{item.waktu_menu}</p>
-            <p>{item.nama_menu}</p>
-            <p>{item.keterangan_menu}</p>
-          </Flex.Item>
-        </Flex>
-      </div>
-    ));
+            <Card.Body>
+              <Flex clasName="flex">
+                <Flex.Item clasName="flexImg">
+                  <img
+                    src={`${UrlApi}assets/fotoMenu/${data.foto_menu}`}
+                    alt=""
+                    srcset=""
+                    style={{ width: "90%" }}
+                  />
+                </Flex.Item>
+                <Flex.Item className="flexDescription">
+                  <strong>{data.nama_menu}</strong>
+                  <p>{data.keterangan_menu}</p>
+                </Flex.Item>
+              </Flex>
+            </Card.Body>
+          </Card>
+        </div>
+      );
+    });
   };
 
   return <div>{renderListMenu(dataState)}</div>;

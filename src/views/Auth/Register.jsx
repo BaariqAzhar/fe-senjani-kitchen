@@ -13,8 +13,7 @@ import axios from "axios";
 import UrlApi from "../../UrlApi";
 import "./LoginRegister.scss";
 import Logo from "./logo.svg";
-import xImg from "./x.svg";
-import arrowLeftImg from "./arrowLeft.svg";
+import arrowLeftWhiteImg from "./arrowLeftWhite.svg";
 
 function Register() {
   let history = useHistory();
@@ -122,7 +121,7 @@ function Register() {
           <img src={Logo} alt="" />
         </div>
         <div className="onClickToLogin">
-          <img onClick={onClickToLogin} src={arrowLeftImg} alt="" />
+          <img onClick={onClickToLogin} src={arrowLeftWhiteImg} alt="" />
         </div>
       </div>
       <WingBlank>
@@ -193,7 +192,7 @@ function Register() {
               history.push("/Login");
             }}
           >
-            Daftar
+            Masuk
           </strong>
         </p>
       </WingBlank>

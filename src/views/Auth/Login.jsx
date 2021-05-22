@@ -107,7 +107,7 @@ function Login() {
         <p>
           Sudah punya akun Senjani ?{"  "}
           <strong className="onClikRegister" onClick={onClikRegister}>
-            Masuk
+            Daftar
           </strong>
         </p>
 
