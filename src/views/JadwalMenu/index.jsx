@@ -4,9 +4,11 @@ import { Link } from "react-router-dom";
 import UrlApi from "./../../UrlApi";
 import "./index.scss";
 import { useHistory } from "react-router-dom";
-import { Tabs, WhiteSpace, Badge } from "antd-mobile";
+import { Tabs, WhiteSpace, Badge, Flex } from "antd-mobile";
+
 import ListMenu from "./ListMenu";
 import IsLogin from "./../Auth/IsLogin";
+import arrowLeftImg from "./arrowLeft.svg";
 
 const JadwalMenu = () => {
   let history = useHistory();
@@ -21,13 +23,17 @@ const JadwalMenu = () => {
   return (
     <div className="App">
       <IsLogin />
-      <button
-        onClick={() => {
-          history.goBack();
-        }}
-      >
-        Go Back
-      </button>
+      <div style={{ display: "flex", backgroundColor: "white" }}>
+        <img
+          onClick={() => {
+            history.goBack();
+          }}
+          style={{ marginLeft: "10px", marginRight: "10px" }}
+          src={arrowLeftImg}
+          alt=""
+        />
+        <h1>Jadwal Menu</h1>
+      </div>
       <Tabs
         tabs={tabs}
         initialPage={0}

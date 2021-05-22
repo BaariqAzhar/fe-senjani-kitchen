@@ -12,6 +12,7 @@ import {
 
 import IsLogin from "./../Auth/IsLogin";
 import UrlApi from "./../../UrlApi";
+import arrowLeftImg from "./arrowLeft.svg";
 
 function FormDetailPengantaran() {
   let history = useHistory();
@@ -83,69 +84,72 @@ function FormDetailPengantaran() {
   return (
     <div>
       <IsLogin />
-      <button
-        onClick={() => {
-          history.goBack();
-        }}
-      >
-        Go Back
-      </button>
-      <h3>Form Detail Pengantaran</h3>
-      <p>Mohon isi sesuai dengan data penerima menu</p>
-      <List renderHeader={() => "Biodata Penerima"}>
-        <InputItem
-          placeholder="baariq azhar"
-          type="text"
-          value={nama}
-          onChange={onChangeNama}
-          clear
-        >
-          Nama <br /> Penerima
-        </InputItem>
-        <TextareaItem
-          title="Alamat"
-          value={alamat}
-          placeholder="Jl. Candi 2C No.557 (Kos Rahman 99), Karangbesuki, Kec. Sukun, Kota Malang"
-          type="text"
-          onChange={onChangeAlamat}
-          autoHeight
-          clear
+      <div style={{ display: "flex", backgroundColor: "white" }}>
+        <img
+          onClick={() => {
+            history.goBack();
+          }}
+          style={{ marginLeft: "10px", marginRight: "10px" }}
+          src={arrowLeftImg}
+          alt=""
         />
-        <InputItem
-          placeholder="08123456789"
-          value={nomorHp}
-          type="number"
-          onChange={onChangeNomorHp}
-          clear
-        >
-          Nomor HP <br /> Penerima
-        </InputItem>
-      </List>
-      <List renderHeader={() => "Catatan"}>
-        <TextareaItem
-          title="Makanan"
-          value={catatan}
-          placeholder="Contoh: tidak ada,tidak suka pedas/ Alergi kacang, udang, dll"
-          type="text"
-          onChange={onChangeCatatan}
-          autoHeight
-          clear
-        />
-        <TextareaItem
-          title="Pesanan"
-          placeholder="Contoh: tidak ada/ ditaruh di satpam/ gantung di gerbang"
-          type="text"
-          onChange={onChangeCatatanPesanan}
-          autoHeight
-          clear
-        />
-        <WingBlank>
-          <Button onClick={onClickPesan} type="primary">
-            Pesan
-          </Button>
-          <WhiteSpace />
-        </WingBlank>
-      </List>
+        <h1>Form Pengantaran</h1>
+      </div>
+      <WingBlank>
+        <h2 align="center">Mohon isi sesuai dengan data penerima menu</h2>
+        <List renderHeader={() => "Biodata Penerima"}>
+          <InputItem
+            placeholder="Baariq Azhar"
+            type="text"
+            value={nama}
+            onChange={onChangeNama}
+            clear
+          >
+            Nama <br /> Penerima
+          </InputItem>
+          <TextareaItem
+            title="Alamat"
+            value={alamat}
+            placeholder="Jl. Candi 2C No.557 (Kos Rahman 99), Karangbesuki, Kec. Sukun, Kota Malang"
+            type="text"
+            onChange={onChangeAlamat}
+            autoHeight
+            clear
+          />
+          <InputItem
+            placeholder="08123456789"
+            value={nomorHp}
+            type="number"
+            onChange={onChangeNomorHp}
+            clear
+          >
+            Nomor HP <br /> Penerima
+          </InputItem>
+        </List>
+        <List renderHeader={() => "Catatan"}>
+          <TextareaItem
+            title="Makanan"
+            value={catatan}
+            placeholder="Contoh: tidak ada,tidak suka pedas/ Alergi kacang, udang, dll"
+            type="text"
+            onChange={onChangeCatatan}
+            autoHeight
+            clear
+          />
+          <TextareaItem
+            title="Pesanan"
+            placeholder="Contoh: tidak ada/ ditaruh di satpam/ gantung di gerbang"
+            type="text"
+            onChange={onChangeCatatanPesanan}
+            autoHeight
+            clear
+          />
+        </List>
+        <WhiteSpace size="lg"/>
+        <Button onClick={onClickPesan} type="primary">
+          Pesan
+        </Button>
+      </WingBlank>
     </div>
   );
 }

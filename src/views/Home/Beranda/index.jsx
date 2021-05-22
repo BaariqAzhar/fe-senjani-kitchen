@@ -21,7 +21,7 @@ const Beranda = () => {
             history.push("/jadwalmenu");
           }}
         >
-          Jadwal Menu Harian
+          Lihat Jadwal Menu
         </Button>
         <WhiteSpace size="lg" />
         <p>Pilih Jenis Kateringmu</p>

@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 import { useHistory, Link } from "react-router-dom";
-import { Button } from "antd-mobile";
-
-import IsLogin from "./../../Auth/IsLogin";
+import { Button, WingBlank, WhiteSpace, Card, List } from "antd-mobile";
 
 const Akun = () => {
+  const Item = List.Item;
   let history = useHistory();
 
   const [pelanggan, setPelanggan] = useState({
@@ -23,13 +22,30 @@ const Akun = () => {
 
   return (
     <div>
-      <IsLogin />
-      <p>{pelanggan.nama_lengkap}</p>
-      <p>{pelanggan.email}</p>
-      <p>{pelanggan.no_hp_wa}</p>
-      <Button type="primary" onClick={onClickKeluar}>
-        Keluar
-      </Button>
+      <WingBlank>
+        <h1>Akun</h1>
+        <List.Item>
+          Nama <List.Item.Brief>{pelanggan.nama_lengkap}</List.Item.Brief>
+        </List.Item>
+        <List.Item>
+          Email <List.Item.Brief>{pelanggan.email}</List.Item.Brief>
+        </List.Item>
+        <List.Item>
+          No HP (Whatsapp){" "}
+          <List.Item.Brief>{pelanggan.no_hp_wa}</List.Item.Brief>
+        </List.Item>
+        <List.Item>
+          Alamat <List.Item.Brief>{pelanggan.alamat}</List.Item.Brief>
+        </List.Item>
+        <List.Item>
+          Catatan Makanan{" "}
+          <List.Item.Brief>{pelanggan.alergi_makanan}</List.Item.Brief>
+        </List.Item>
+        <WhiteSpace size="lg" />
+        <Button type="warning" onClick={onClickKeluar}>
+          Keluar
+        </Button>
+      </WingBlank>
     </div>
   );
 };

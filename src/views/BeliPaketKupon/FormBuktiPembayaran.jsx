@@ -1,36 +1,45 @@
 import { useEffect, useState } from "react";
 import { useHistory, Link } from "react-router-dom";
 import axios from "axios";
-import { ImagePicker } from "antd-mobile";
+import {
+  Card,
+  ImagePicker,
+  WingBlank,
+  List,
+  WhiteSpace,
+  Button,
+} from "antd-mobile";
 
 import IsLogin from "./../Auth/IsLogin";
 import UrlApi from "./../../UrlApi";
+import caraPembayaran from "./../Function/caraPembayaran";
+import transferKe from "./../Function/transferKe";
 
 function FormBuktiPembayaran() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   let history = useHistory();
+
+  useEffect(() => {
+    return history.listen(() => {
+      // listen
+      if (history.action === "POP") {
+        history.replace("/FormBuktiPembayaran");
+      }
+    });
+  }, [history]);
 
   const [files, setFiles] = useState([]);
   const [kuponPelanggan, setKuponPelanggan] = useState(
     JSON.parse(localStorage.getItem("kuponPelanggan"))
   );
-  // const [kuponPelanggan, setKuponPelanggan] = useState({
-  //   waktu_batas_pembayaran: "",
-  //   harga: "",
-  //   cara_pembayaran: "",
-  // });
   const [idKuponPelanggan, setIdKuponPelanggan] = useState(
     JSON.parse(localStorage.getItem("id_kupon_pelanggan"))
   );
-  // const [idKuponPelanggan, setIdKuponPelanggan] = useState(0);
-
-  // useEffect(() => {
-  //   setIdKuponPelanggan(localStorage.getItem("id_kupon_pelanggan"));
-  //   console.log("id kupon pelanggan : " + idKuponPelanggan);
-  // }, [idKuponPelanggan]);
-  // useEffect(() => {
-  //   setKuponPelanggan(localStorage.getItem("kuponPelanggan"));
-  //   console.log("kuponPelanggan : " + kuponPelanggan);
-  // }, [kuponPelanggan]);
+  const [selectedPaketKuponState, setSelectedPaketKuponState] = useState(
+    JSON.parse(localStorage.getItem("selectedPaketKuponState"))
+  );
 
   const onChange = (files, type, index) => {
     setFiles(files);
@@ -75,38 +84,48 @@ function FormBuktiPembayaran() {
   return (
     <div>
       <IsLogin />
-      <button
-        onClick={() => {
-          history.goBack();
-        }}
-      >
-        Go Back
-      </button>
-      <p>
-        Yeyy.. pesananmu berhasil dibuat Lanjut bayar dan upload bukti
-        pembayarannya ya
-      </p>
-      <p>bayar sebelum {kuponPelanggan.waktu_batas_pembayaran}</p>
-      <p>total pembayaran : Rp {kuponPelanggan.harga}</p>
-      <p>metode pembayaran : {kuponPelanggan.cara_pembayaran}</p>
-      <p>transfer ke 08712345567</p>
-      <p>atas nama Senjani Kitchen</p>
-      <input
-        type="file"
-        className="form-control"
-        name="upload_file"
-        onChange={handleInputChange}
-        required
-      />
-      <button onClick={onClickSubmit}>submit</button>
-
-      <ImagePicker
-        files={files}
-        onChange={onChange}
-        multiple={false}
-        length={2}
-        selectable={files.length < 1}
-      />
+      <WingBlank>
+        <div align="center">
+          <h2 align="center">Yeyy.. pesananmu berhasil dibuat</h2>
+          <p>Lanjut bayar dan upload bukti pembayarannya ya</p>
+        </div>
+        <Card>
+          <Card.Body>
+            <div>
+              <div align="center">
+                <h3>Bayar sebelum </h3>
+                <h2>{kuponPelanggan.waktu_batas_pembayaran}</h2>
+              </div>
+              <hr />
+              <WingBlank>
+                <h4>Total pembayaran</h4>
+                <h2>Rp {selectedPaketKuponState.harga}</h2> <WhiteSpace />
+                <h4>Metode pembayaran</h4>
+                <h2>{caraPembayaran(kuponPelanggan.cara_pembayaran)}</h2>
+                <WhiteSpace />
+                <h4>Transfer ke</h4>
+                <h2>{transferKe(kuponPelanggan.cara_pembayaran)}</h2>
+                <WhiteSpace />
+                <h4>Atas nama</h4>
+                <h2>Senjani Kitchen</h2>
+                <WhiteSpace />
+                <h4>Unggah bukti pembayaran</h4>
+                <input
+                  type="file"
+                  className="form-control"
+                  name="upload_file"
+                  onChange={handleInputChange}
+                  required
+                />
+                <WhiteSpace size="lg" />
+                <Button type="primary" onClick={onClickSubmit}>
+                  Submit
+                </Button>
+              </WingBlank>
+            </div>
+          </Card.Body>
+        </Card>
+      </WingBlank>
     </div>
   );
 }

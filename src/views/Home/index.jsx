@@ -77,11 +77,11 @@ function Home() {
                 }}
               />
             }
-            title="Riwayat"
-            key="riwayat"
-            selected={selectedTab === "riwayatTab"}
+            title="Pesanan"
+            key="pesanan"
+            selected={selectedTab === "pesananTab"}
             onPress={() => {
-              setSelectedTab("riwayatTab");
+              setSelectedTab("pesananTab");
             }}
             data-seed="logId1"
           >

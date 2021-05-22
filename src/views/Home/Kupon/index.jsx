@@ -1,9 +1,10 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Button, WhiteSpace, WingBlank } from "antd-mobile";
+import { Button, Card, WhiteSpace, WingBlank } from "antd-mobile";
 import { useHistory, Link } from "react-router-dom";
 
 import UrlApi from "./../../../UrlApi";
+import kuponImg from "./kupon.svg";
 
 const Kupon = () => {
   let history = useHistory();
@@ -41,19 +42,49 @@ const Kupon = () => {
   }, [dataState]);
 
   const KuponBoxList = () => {
-    const listItems = dataState.map((data) => (
-      <div style={{ border: "1px solid rgba(0, 0, 0, 0.05)" }}>
-        <p>{data.jenis_paket_kupon}</p>
-        <p>{data.jenis_nasi}</p>
-        <p>{data.jumlah_kupon}</p>
-        <p>{data.tanggal_pembelian_kupon}</p>
-        <p>{data.tanggal_kedaluwarsa}</p>
-        <p>{data.jumlah_kupon_tersisa}</p>
-        <WingBlank>
-          <RenderButtonKupon data={data} /> <WhiteSpace />
-        </WingBlank>
-      </div>
-    ));
+    const listItems = dataState.map((data) => {
+      let jenisPaketKupon = "";
+      if (data.jenis_paket_kupon === "basic_meal_box") {
+        jenisPaketKupon = "Basic meal box";
+      } else if (data.jenis_paket_kupon === "reusable_meal_box") {
+        jenisPaketKupon = "Reusable meal box";
+      } else if (data.jenis_paket_kupon === "deluxe_meal_box") {
+        jenisPaketKupon = "Deluxe meal box";
+      } else if (data.jenis_paket_kupon === "couple_pack") {
+        jenisPaketKupon = "Couple pack";
+      } else if (data.jenis_paket_kupon === "family_pack") {
+        jenisPaketKupon = "Family pack";
+      }
+      let jenisNasi = "";
+      if (data.jenis_nasi === "nasi_merah") {
+        jenisNasi = "Nasi merah";
+      } else if (data.jenis_nasi === "nasi_putih") {
+        jenisNasi = "Nasi putih";
+      } else if (data.jenis_nasi === "tanpa_nasi") {
+        jenisNasi = "Tanpa nasi";
+      }
+      return (
+        <div>
+          <Card>
+            <Card.Header
+              title={`${jenisPaketKupon} - ${jenisNasi} ${data.jumlah_kupon}x`}
+              thumb={kuponImg}
+            />
+            <Card.Body>
+              <strong>
+                Jumlah kupon tersisa : {data.jumlah_kupon_tersisa}
+              </strong>
+              <p>Tanggal pembelian : {data.tanggal_pembelian_kupon}</p>
+              <p>Tanggal kedaluwarsa : {data.tanggal_kedaluwarsa}</p>
+              <WingBlank>
+                <RenderButtonKupon data={data} /> <WhiteSpace />
+              </WingBlank>
+            </Card.Body>
+          </Card>
+          <WhiteSpace size="md" />
+        </div>
+      );
+    });
     return <div>{listItems}</div>;
   };
 
@@ -81,8 +112,10 @@ const Kupon = () => {
 
   return (
     <div>
-      <h2>Riwayat Kupon</h2>
-      <KuponBoxList />
+      <WingBlank>
+        <h1>Riwayat Kupon</h1>
+        <KuponBoxList />
+      </WingBlank>
     </div>
   );
 };
