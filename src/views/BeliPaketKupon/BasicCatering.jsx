@@ -58,91 +58,93 @@ function BasicCatering() {
   };
 
   return (
-    <div>
-      <IsLogin />
-      <div>
-        <div style={{ backgroundColor: "white", paddingBottom: "10px" }}>
-          <div style={{ display: "flex" }}>
-            <img
-              onClick={() => {
-                history.goBack();
-              }}
-              style={{ marginLeft: "10px", marginRight: "10px" }}
-              src={arrowLeftImg}
-              alt=""
-            />
-            <h1>Basic Catering</h1>
+    <div className="grid">
+      <div className="container">
+        <IsLogin />
+        <div>
+          <div style={{ backgroundColor: "white", paddingBottom: "10px" }}>
+            <div style={{ display: "flex" }}>
+              <img
+                onClick={() => {
+                  history.goBack();
+                }}
+                style={{ marginLeft: "10px", marginRight: "10px" }}
+                src={arrowLeftImg}
+                alt=""
+              />
+              <h1>Basic Catering</h1>
+            </div>
+            <div style={{ display: "grid", placeItems: "center" }}>
+              <img src={basicImg} alt="" />
+            </div>
+            <WingBlank size="lg" style={{ margin: "0px 30px 0px 30px" }}>
+              <p>
+                Katering harian dengan kotak makan sekali pakai. Pilih jumlah
+                kuponmu dan pakai kapanpun kamu mau
+              </p>
+            </WingBlank>
           </div>
-          <div style={{ display: "grid", placeItems: "center" }}>
-            <img src={basicImg} alt="" />
-          </div>
-          <WingBlank size="lg" style={{ margin: "0px 30px 0px 30px" }}>
-            <p>
-              Katering harian dengan kotak makan sekali pakai. Pilih jumlah
-              kuponmu dan pakai kapanpun kamu mau
-            </p>
-          </WingBlank>
-        </div>
-        <WingBlank>
-          <h2>Nasi Putih</h2>
-        </WingBlank>
-        <List>
-          {dataState.map((i) =>
-            i.jenis_nasi === "nasi_putih" ? (
-              <RadioItem
-                key={i.id_paket_kupon}
-                checked={checkedState === i.id_paket_kupon}
-                onChange={() => onChange(i)}
-              >
-                {i.jumlah_kupon}
-                <List.Item.Brief>Rp {i.harga}</List.Item.Brief>
-              </RadioItem>
-            ) : (
-              <div></div>
-            )
-          )}
-        </List>
-        <WingBlank>
-          <h2>Nasi Merah</h2>
-        </WingBlank>
-        <List>
-          {dataState.map((i) =>
-            i.jenis_nasi === "nasi_merah" ? (
-              <RadioItem
-                key={i.id_paket_kupon}
-                checked={checkedState === i.id_paket_kupon}
-                onChange={() => onChange(i)}
-              >
-                {i.jumlah_kupon}
-                <List.Item.Brief>Rp {i.harga}</List.Item.Brief>
-              </RadioItem>
-            ) : (
-              <div></div>
-            )
-          )}
-        </List>
-        {selectedPaketKuponState ? (
           <WingBlank>
-            <WhiteSpace size="lg" />
-            <strong>Kupon Basic Catering</strong>
-            <p>
-              {jenisNasi(selectedPaketKuponState.jenis_nasi)}{" "}
-              {selectedPaketKuponState.jumlah_kupon}x Rp{" "}
-              {selectedPaketKuponState.harga}{" "}
-            </p>
-            <Button
-              type="primary"
-              onClick={() => {
-                history.push("/MetodePembayaran");
-              }}
-            >
-              Pilih Metode Pembayaran
-            </Button>
-            <WhiteSpace />
+            <h2>Nasi Putih</h2>
           </WingBlank>
-        ) : (
-          <></>
-        )}
+          <List>
+            {dataState.map((i) =>
+              i.jenis_nasi === "nasi_putih" ? (
+                <RadioItem
+                  key={i.id_paket_kupon}
+                  checked={checkedState === i.id_paket_kupon}
+                  onChange={() => onChange(i)}
+                >
+                  {i.jumlah_kupon}
+                  <List.Item.Brief>Rp {i.harga}</List.Item.Brief>
+                </RadioItem>
+              ) : (
+                <div></div>
+              )
+            )}
+          </List>
+          <WingBlank>
+            <h2>Nasi Merah</h2>
+          </WingBlank>
+          <List>
+            {dataState.map((i) =>
+              i.jenis_nasi === "nasi_merah" ? (
+                <RadioItem
+                  key={i.id_paket_kupon}
+                  checked={checkedState === i.id_paket_kupon}
+                  onChange={() => onChange(i)}
+                >
+                  {i.jumlah_kupon}
+                  <List.Item.Brief>Rp {i.harga}</List.Item.Brief>
+                </RadioItem>
+              ) : (
+                <div></div>
+              )
+            )}
+          </List>
+          {selectedPaketKuponState ? (
+            <WingBlank>
+              <WhiteSpace size="lg" />
+              <strong>Kupon Basic Catering</strong>
+              <p>
+                {jenisNasi(selectedPaketKuponState.jenis_nasi)}{" "}
+                {selectedPaketKuponState.jumlah_kupon}x Rp{" "}
+                {selectedPaketKuponState.harga}{" "}
+              </p>
+              <Button
+                type="primary"
+                onClick={() => {
+                  history.push("/MetodePembayaran");
+                }}
+              >
+                Pilih Metode Pembayaran
+              </Button>
+              <WhiteSpace />
+            </WingBlank>
+          ) : (
+            <></>
+          )}
+        </div>
       </div>
     </div>
   );

@@ -5,6 +5,7 @@ import { useHistory, Link } from "react-router-dom";
 
 import UrlApi from "./../../../UrlApi";
 import kuponImg from "./kupon.svg";
+import "./kupon.css";
 
 const Kupon = () => {
   let history = useHistory();
@@ -96,12 +97,29 @@ const Kupon = () => {
           Kupon Telah Habis
         </Button>
       );
-    } else {
+    } else if (
+      data.status_kupon === "menunggu_diverifikasi" ||
+      data.status_kupon === "sudah_dibayar"
+    ) {
       return (
         <Button type="primary" onClick={() => onClickGunakanKupon(data)}>
           Gunakan Kupon
         </Button>
       );
+    } else if (data.status_kupon === "belum_dibayar") {
+      return (
+        <Button type="warning" onClick={() => onClickUnggahBukti(data)}>
+          Unggah Bukti Pembayaran
+        </Button>
+      );
+    } else if (data.status_kupon === "gagal_dibayar") {
+      return (
+        <Button type="primary" disabled>
+          Kupon Dibatalkan
+        </Button>
+      );
+    } else {
+      return <div></div>;
     }
   };
 
@@ -110,12 +128,19 @@ const Kupon = () => {
     history.push("/PilihJadwalMenu");
   };
 
+  const onClickUnggahBukti = (data) => {
+    localStorage.setItem("kuponPelanggan", JSON.stringify(data));
+    history.push("/FormBuktiPembayaran");
+  };
+
   return (
-    <div>
-      <WingBlank>
-        <h1>Riwayat Kupon</h1>
-        <KuponBoxList />
-      </WingBlank>
+    <div className="grid">
+      <div className="container">
+        <WingBlank>
+          <h1>Riwayat Kupon</h1>
+          <KuponBoxList />
+        </WingBlank>
+      </div>
     </div>
   );
 };

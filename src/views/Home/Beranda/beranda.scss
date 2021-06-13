@@ -3,6 +3,18 @@
   height: auto;
 }
 .cateringImg {
-  width: 1px;
+  // width: 1px;
   flex: 1;
+  display: grid;
+  place-items: center;
+}
+
+@media only screen and (min-device-width: 600px) {
+  .grid {
+    display: grid;
+    place-items: center;
+  }
+  .container {
+    width: 600px;
+  }
 }
