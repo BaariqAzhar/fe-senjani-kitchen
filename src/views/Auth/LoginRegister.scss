@@ -1,4 +1,4 @@
-.container{
+.containerBackground {
   position: relative;
 }
 .backgroundA {
@@ -14,12 +14,21 @@
   width: 100%;
   text-align: center;
 }
-.onClikRegister{
-  color: #108EE9;
+.onClikRegister {
+  color: #108ee9;
 }
-.onClickToLogin{
+.onClickToLogin {
   position: absolute;
   top: 30px;
   left: 16px;
   font-size: 18px;
+}
+@media only screen and (min-device-width: 600px) {
+  .grid {
+    display: grid;
+    place-items: center;
+  }
+  .container {
+    width: 600px;
+  }
 }

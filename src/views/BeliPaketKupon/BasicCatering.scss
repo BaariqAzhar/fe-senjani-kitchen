@@ -12,3 +12,12 @@
   margin-bottom: 50px;
   padding-bottom: 50px;
 }
+@media only screen and (min-device-width: 600px) {
+  .grid {
+    display: grid;
+    place-items: center;
+  }
+  .container {
+    width: 600px;
+  }
+}

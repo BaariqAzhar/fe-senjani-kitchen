@@ -37,12 +37,15 @@ const Menu = (props) => {
         />
         <Card.Body>
           <Flex clasName="flex">
-            <Flex.Item clasName="flexImg">
+            <Flex.Item
+              clasName="flexImg"
+              style={{ display: "grid", placeItems: "center" }}
+            >
               <img
                 src={`${UrlApi}assets/fotoMenu/${data.foto_menu}`}
                 alt=""
                 srcset=""
-                style={{ width: "90%" }}
+                style={{ width: "70%" }}
               />
             </Flex.Item>
             <Flex.Item className="flexDescription">

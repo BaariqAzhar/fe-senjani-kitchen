@@ -51,21 +51,22 @@ function FormBuktiPembayaran() {
   const [selectedFile, setSelectedFile] = useState("");
   const handleInputChange = (event) => {
     setSelectedFile(event.target.files[0]);
+    console.log(event.target.files[0]);
   };
-  const onClickSubmit = () => {
-    console.log("wuhuuu");
-    const data = new FormData();
-    data.append("id_kupon_pelanggan", idKuponPelanggan);
-    data.append("bukti_pembayaran", selectedFile);
-    console.warn(selectedFile);
-    let url = `${UrlApi}kuponpelanggan/updateKuponPelanggan/`;
-
-    axios
-      .post(url, data, {
-        // receive two parameter endpoint url ,form data
-      })
-      .then((res) => {
-        // then print response status
+  const onClickSubmit = async () => {
+    console.log(selectedFile);
+    if (selectedFile === "") {
+      alert("Unggah Bukti Pembayaran Tidak Boleh Kosong");
+    } else if (selectedFile.type.includes("image")) {
+      const data = new FormData();
+      data.append("id_kupon_pelanggan", idKuponPelanggan);
+      data.append("bukti_pembayaran", selectedFile);
+      console.warn(selectedFile);
+      try {
+        const res = await axios.post(
+          `${UrlApi}kuponpelanggan/updateKuponPelanggan`,
+          data
+        );
         if (res.data.status === "success") {
           history.push("/");
           alert("pembelian kupon sedang dalam proses");
@@ -74,58 +75,64 @@ function FormBuktiPembayaran() {
           localStorage.removeItem("id_kupon_pelanggan");
           localStorage.removeItem("kuponPelanggan");
           localStorage.removeItem("selectedPaketKuponState");
-        } else {
-          alert("submit gagal");
         }
-        console.warn(res);
-      });
+      } catch {
+        alert("Unggah bukti pembayaran gagal");
+      }
+    } else {
+      alert(
+        "Unggah Bukti Gagal, Bukti Pembayaran Harus Berbentuk Gambar (jpg, png, dll)"
+      );
+    }
   };
 
   return (
-    <div>
-      <IsLogin />
-      <WingBlank>
-        <div align="center">
-          <h2 align="center">Yeyy.. pesananmu berhasil dibuat</h2>
-          <p>Lanjut bayar dan upload bukti pembayarannya ya</p>
-        </div>
-        <Card>
-          <Card.Body>
-            <div>
-              <div align="center">
-                <h3>Bayar sebelum </h3>
-                <h2>{kuponPelanggan.waktu_batas_pembayaran}</h2>
+    <div className="grid">
+      <div className="container">
+        <IsLogin />
+        <WingBlank>
+          <div align="center">
+            <h2 align="center">Yeyy.. pembelian kuponmu berhasil dibuat</h2>
+            <p>Lanjut bayar dan upload bukti pembayarannya ya</p>
+          </div>
+          <Card>
+            <Card.Body>
+              <div>
+                <div align="center">
+                  <h3>Bayar sebelum </h3>
+                  <h2>{kuponPelanggan.waktu_batas_pembayaran}</h2>
+                </div>
+                <hr />
+                <WingBlank>
+                  <h4>Total pembayaran</h4>
+                  <h2>Rp {selectedPaketKuponState.harga}</h2> <WhiteSpace />
+                  <h4>Metode pembayaran</h4>
+                  <h2>{caraPembayaran(kuponPelanggan.cara_pembayaran)}</h2>
+                  <WhiteSpace />
+                  <h4>Transfer ke</h4>
+                  <h2>{transferKe(kuponPelanggan.cara_pembayaran)}</h2>
+                  <WhiteSpace />
+                  <h4>Atas nama</h4>
+                  <h2>Senjani Kitchen</h2>
+                  <WhiteSpace />
+                  <h4>Unggah bukti pembayaran</h4>
+                  <input
+                    type="file"
+                    className="form-control"
+                    name="upload_file"
+                    onChange={handleInputChange}
+                    required
+                  />
+                  <WhiteSpace size="lg" />
+                  <Button type="primary" onClick={onClickSubmit}>
+                    Submit
+                  </Button>
+                </WingBlank>
               </div>
-              <hr />
-              <WingBlank>
-                <h4>Total pembayaran</h4>
-                <h2>Rp {selectedPaketKuponState.harga}</h2> <WhiteSpace />
-                <h4>Metode pembayaran</h4>
-                <h2>{caraPembayaran(kuponPelanggan.cara_pembayaran)}</h2>
-                <WhiteSpace />
-                <h4>Transfer ke</h4>
-                <h2>{transferKe(kuponPelanggan.cara_pembayaran)}</h2>
-                <WhiteSpace />
-                <h4>Atas nama</h4>
-                <h2>Senjani Kitchen</h2>
-                <WhiteSpace />
-                <h4>Unggah bukti pembayaran</h4>
-                <input
-                  type="file"
-                  className="form-control"
-                  name="upload_file"
-                  onChange={handleInputChange}
-                  required
-                />
-                <WhiteSpace size="lg" />
-                <Button type="primary" onClick={onClickSubmit}>
-                  Submit
-                </Button>
-              </WingBlank>
-            </div>
-          </Card.Body>
-        </Card>
-      </WingBlank>
+            </Card.Body>
+          </Card>
+        </WingBlank>
+      </div>
     </div>
   );
 }

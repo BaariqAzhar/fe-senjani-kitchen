@@ -96,74 +96,76 @@ function MetodePembayaran() {
   };
 
   return (
-    <div>
-      <IsLogin />
-      <div style={{ marginBottom: "150px" }}>
-        <div style={{ backgroundColor: "white", paddingBottom: "10px" }}>
-          <div style={{ display: "flex" }}>
-            <img
-              onClick={() => {
-                history.goBack();
-              }}
-              style={{ marginLeft: "10px", marginRight: "10px" }}
-              src={arrowLeftImg}
-              alt=""
-            />
-            <h1>Metode Pembayaran</h1>
+    <div className="grid">
+      <div className="container">
+        <IsLogin />
+        <div style={{ marginBottom: "150px" }}>
+          <div style={{ backgroundColor: "white", paddingBottom: "10px" }}>
+            <div style={{ display: "flex" }}>
+              <img
+                onClick={() => {
+                  history.goBack();
+                }}
+                style={{ marginLeft: "10px", marginRight: "10px" }}
+                src={arrowLeftImg}
+                alt=""
+              />
+              <h1>Metode Pembayaran</h1>
+            </div>
+            <WhiteSpace />
+            <WingBlank>
+              <strong>Total Pembayaran</strong>
+              <h1>Rp {selectedPaketKuponState.harga}</h1>
+              <p>
+                <strong>
+                  Kupon{"  "}
+                  {jenisPaketKupon(selectedPaketKuponState.jenis_paket_kupon)}
+                </strong>
+              </p>
+              <p> {jenisNasi(selectedPaketKuponState.jenis_nasi)}</p>
+              <p> {selectedPaketKuponState.jumlah_kupon}x</p>
+            </WingBlank>
           </div>
-          <WhiteSpace />
           <WingBlank>
-            <strong>Total Pembayaran</strong>
-            <h1>Rp {selectedPaketKuponState.harga}</h1>
-            <p>
-              <strong>
-                Kupon{"  "}
-                {jenisPaketKupon(selectedPaketKuponState.jenis_paket_kupon)}
-              </strong>
-            </p>
-            <p> {jenisNasi(selectedPaketKuponState.jenis_nasi)}</p>
-            <p> {selectedPaketKuponState.jumlah_kupon}x</p>
+            <h1>Mau bayar pakai apa?</h1>
+            <div>
+              <List>
+                <RadioItem
+                  key="gopay"
+                  checked={checkedState === "gopay"}
+                  onChange={() => onChange("gopay")}
+                >
+                  GoPay
+                </RadioItem>
+                <RadioItem
+                  key="dana"
+                  checked={checkedState === "dana"}
+                  onChange={() => onChange("dana")}
+                >
+                  Dana
+                </RadioItem>
+                <RadioItem
+                  key="jenius"
+                  checked={checkedState === "jenius"}
+                  onChange={() => onChange("jenius")}
+                >
+                  Jenius
+                </RadioItem>
+                <RadioItem
+                  key="bni"
+                  checked={checkedState === "bni"}
+                  onChange={() => onChange("bni")}
+                >
+                  BNI
+                </RadioItem>
+              </List>
+              <WhiteSpace size="lg" />
+              <Button type="primary" onClick={onClickBayar}>
+                Bayar
+              </Button>
+            </div>
           </WingBlank>
         </div>
-        <WingBlank>
-          <h1>Mau bayar pakai apa?</h1>
-          <div>
-            <List>
-              <RadioItem
-                key="gopay"
-                checked={checkedState === "gopay"}
-                onChange={() => onChange("gopay")}
-              >
-                GoPay
-              </RadioItem>
-              <RadioItem
-                key="dana"
-                checked={checkedState === "dana"}
-                onChange={() => onChange("dana")}
-              >
-                Dana
-              </RadioItem>
-              <RadioItem
-                key="jenius"
-                checked={checkedState === "jenius"}
-                onChange={() => onChange("jenius")}
-              >
-                Jenius
-              </RadioItem>
-              <RadioItem
-                key="bni"
-                checked={checkedState === "bni"}
-                onChange={() => onChange("bni")}
-              >
-                BNI
-              </RadioItem>
-            </List>
-            <WhiteSpace size="lg" />
-            <Button type="primary" onClick={onClickBayar}>
-              Bayar
-            </Button>
-          </div>
-        </WingBlank>
       </div>
     </div>
   );

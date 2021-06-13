@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useHistory, Link } from "react-router-dom";
 import { Button, WingBlank, WhiteSpace, Card, List } from "antd-mobile";
 
+import "./akun.css";
+
 const Akun = () => {
   const Item = List.Item;
   let history = useHistory();
@@ -21,8 +23,8 @@ const Akun = () => {
   };
 
   return (
-    <div>
-      <WingBlank>
+    <div className="grid">
+      <WingBlank className="container">
         <h1>Akun</h1>
         <List.Item>
           Nama <List.Item.Brief>{pelanggan.nama_lengkap}</List.Item.Brief>

@@ -92,34 +92,37 @@ function PilihJadwalMenu() {
   };
 
   return (
-    <div>
-      <IsLogin />
-      <div style={{ display: "flex", backgroundColor: "white" }}>
-        <img
-          onClick={() => {
-            history.goBack();
-          }}
-          style={{ marginLeft: "10px", marginRight: "10px" }}
-          src={arrowLeftImg}
-          alt=""
-        />
-        <h1>Gunakan Kupon</h1>
+    <div className="grid">
+      <div className="container">
+        <IsLogin />
+        <div style={{ display: "flex", backgroundColor: "white" }}>
+          <img
+            onClick={() => {
+              history.goBack();
+            }}
+            style={{ marginLeft: "10px", marginRight: "10px" }}
+            src={arrowLeftImg}
+            alt=""
+          />
+          <h1>Gunakan Kupon</h1>
+        </div>
+        <WingBlank>
+          <h4>
+            Jumlah kupon tersedia :{" "}
+            {selectedKuponPelanggan.jumlah_kupon_tersisa}
+          </h4>
+          <h4>Kupon terpakai : {selectedIdMenu.length}</h4>
+          {selectedIdMenu.length > 0 ? (
+            <Button type="primary" onClick={onClickNext}>
+              Lanjutkan Mengisi Form Pemesanan
+            </Button>
+          ) : (
+            <div></div>
+          )}
+          <WhiteSpace size="lg" />
+          <RenderListMenu />
+        </WingBlank>
       </div>
-      <WingBlank>
-        <h4>
-          Jumlah kupon tersedia : {selectedKuponPelanggan.jumlah_kupon_tersisa}
-        </h4>
-        <h4>Kupon terpakai : {selectedIdMenu.length}</h4>
-        {selectedIdMenu.length > 0 ? (
-          <Button type="primary" onClick={onClickNext}>
-            Lanjutkan Mengisi Form Pemesanan
-          </Button>
-        ) : (
-          <div></div>
-        )}
-        <WhiteSpace size="lg" />
-        <RenderListMenu />
-      </WingBlank>
     </div>
   );
 }

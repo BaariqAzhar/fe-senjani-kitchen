@@ -3,7 +3,6 @@ import logo from "./logo.svg";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Home from "./views/Home";
 import JadwalMenu from "./views/JadwalMenu";
-import DailyCatering from "./views/DailyCatering"; // !hapus
 import BasicCatering from "./views/BeliPaketKupon/BasicCatering";
 import MetodePembayaran from "./views/BeliPaketKupon/MetodePembayaran";
 import FormBuktiPembayaran from "./views/BeliPaketKupon/FormBuktiPembayaran";
@@ -20,11 +19,6 @@ function App() {
         <Switch>
           <Route path="/jadwalmenu">
             <JadwalMenu />
-          </Route>
-          <Route path="/dailycatering">
-            {" "}
-            {/* ! hapus */}
-            <DailyCatering />
           </Route>
           <Route path="/BasicCatering">
             <BasicCatering />

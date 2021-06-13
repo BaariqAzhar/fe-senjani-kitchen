@@ -21,58 +21,60 @@ const JadwalMenu = () => {
   ];
 
   return (
-    <div className="App">
-      <IsLogin />
-      <div style={{ display: "flex", backgroundColor: "white" }}>
-        <img
-          onClick={() => {
-            history.goBack();
+    <div className="grid">
+      <div className="container">
+        <IsLogin />
+        <div style={{ display: "flex", backgroundColor: "white" }}>
+          <img
+            onClick={() => {
+              history.goBack();
+            }}
+            style={{ marginLeft: "10px", marginRight: "10px" }}
+            src={arrowLeftImg}
+            alt=""
+          />
+          <h1>Jadwal Menu</h1>
+        </div>
+        <Tabs
+          tabs={tabs}
+          initialPage={0}
+          onChange={(tab, index) => {
+            console.log("onChange", index, tab);
           }}
-          style={{ marginLeft: "10px", marginRight: "10px" }}
-          src={arrowLeftImg}
-          alt=""
-        />
-        <h1>Jadwal Menu</h1>
+          onTabClick={(tab, index) => {
+            console.log("onTabClick", index, tab);
+          }}
+        >
+          <div>
+            <ListMenu />
+          </div>
+          <div>
+            <ListMenu />
+          </div>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              height: "150px",
+              backgroundColor: "#fff",
+            }}
+          >
+            Content of third tab
+          </div>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              height: "150px",
+              backgroundColor: "#fff",
+            }}
+          >
+            Content of fourth tab
+          </div>
+        </Tabs>
       </div>
-      <Tabs
-        tabs={tabs}
-        initialPage={0}
-        onChange={(tab, index) => {
-          console.log("onChange", index, tab);
-        }}
-        onTabClick={(tab, index) => {
-          console.log("onTabClick", index, tab);
-        }}
-      >
-        <div>
-          <ListMenu />
-        </div>
-        <div>
-          <ListMenu />
-        </div>
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            height: "150px",
-            backgroundColor: "#fff",
-          }}
-        >
-          Content of third tab
-        </div>
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            height: "150px",
-            backgroundColor: "#fff",
-          }}
-        >
-          Content of fourth tab
-        </div>
-      </Tabs>
     </div>
   );
 };

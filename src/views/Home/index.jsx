@@ -3,6 +3,7 @@ import { TabBar } from "antd-mobile";
 import { Button, WhiteSpace, WingBlank } from "antd-mobile";
 import "antd-mobile/dist/antd-mobile.css";
 
+import "./home.css";
 import Beranda from "./Beranda";
 import Pesanan from "./Pesanan";
 import Kupon from "./Kupon";

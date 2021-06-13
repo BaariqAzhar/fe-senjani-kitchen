@@ -1,8 +1,11 @@
-.flexImg {
-  // width: 1px;
-  display: grid;
-  place-items: center;
-  background-color: red;
+@media only screen and (min-device-width: 768px) {
+  .grid {
+    display: grid;
+    place-items: center;
+  }
+  .container {
+    width: 768px;
+  }
 }
 @media only screen and (min-device-width: 600px) {
   .grid {

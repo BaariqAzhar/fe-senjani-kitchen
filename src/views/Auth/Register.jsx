@@ -111,91 +111,93 @@ function Register() {
   };
 
   return (
-    <div>
+    <div className="grid">
       <div className="container">
-        <div>
-          <div className="backgroundA"></div>
-          <div className="backgroundB"></div>
+        <div className="containerBackground">
+          <div>
+            <div className="backgroundA"></div>
+            <div className="backgroundB"></div>
+          </div>
+          <div className="logo">
+            <img src={Logo} alt="" />
+          </div>
+          <div className="onClickToLogin">
+            <img onClick={onClickToLogin} src={arrowLeftWhiteImg} alt="" />
+          </div>
         </div>
-        <div className="logo">
-          <img src={Logo} alt="" />
-        </div>
-        <div className="onClickToLogin">
-          <img onClick={onClickToLogin} src={arrowLeftWhiteImg} alt="" />
-        </div>
-      </div>
-      <WingBlank>
-        <h3>Buat Akun Senjanimu</h3>
-        <WhiteSpace />
-        <InputItem
-          placeholder="abc@email.com"
-          type="email"
-          onChange={onChangeEmail}
-        >
-          Email
-        </InputItem>
-        <InputItem
-          placeholder="*****"
-          type="password"
-          onChange={onChangePassword}
-        >
-          Password
-        </InputItem>
-        <InputItem
-          placeholder="*****"
-          type="password"
-          onChange={onChangeRepassword}
-        >
-          Ulangi <br />
-          Password
-        </InputItem>
-        <p>{notePassword}</p>
-        <InputItem
-          placeholder="baariq azhar"
-          type="text"
-          onChange={onChangeNama}
-        >
-          Nama
-        </InputItem>
-        <TextareaItem
-          title="Alamat"
-          placeholder="Jl. Candi 2C No.557 (Kos Rahman 99), Karangbesuki, Kec. Sukun, Kota Malang"
-          type="text"
-          onChange={onChangeAlamat}
-          autoHeight
-        />
-        <InputItem
-          placeholder="08123456789"
-          type="number"
-          onChange={onChangeNomorHp}
-        >
-          Nomor HP (Whatsapp)
-        </InputItem>
-        <TextareaItem
-          title="Catatan"
-          placeholder="Contoh: tidak ada,tidak suka pedas/ Alergi kacang, udang, dll"
-          type="text"
-          onChange={onChangeCatatan}
-          autoHeight
-        />
         <WingBlank>
-          <Button onClick={onClickDaftar} type="primary">
-            Daftar
-          </Button>
+          <h3>Buat Akun Senjanimu</h3>
           <WhiteSpace />
-        </WingBlank>
-        <p>
-          Sudah punya akun senjani ? {"  "}
-          <strong
-            className="onClikRegister"
-            onClick={() => {
-              history.push("/Login");
-            }}
+          <InputItem
+            placeholder="abc@email.com"
+            type="email"
+            onChange={onChangeEmail}
           >
-            Masuk
-          </strong>
-        </p>
-      </WingBlank>
+            Email
+          </InputItem>
+          <InputItem
+            placeholder="*****"
+            type="password"
+            onChange={onChangePassword}
+          >
+            Password
+          </InputItem>
+          <InputItem
+            placeholder="*****"
+            type="password"
+            onChange={onChangeRepassword}
+          >
+            Ulangi <br />
+            Password
+          </InputItem>
+          <p>{notePassword}</p>
+          <InputItem
+            placeholder="baariq azhar"
+            type="text"
+            onChange={onChangeNama}
+          >
+            Nama
+          </InputItem>
+          <TextareaItem
+            title="Alamat"
+            placeholder="Jl. Candi 2C No.557 (Kos Rahman 99), Karangbesuki, Kec. Sukun, Kota Malang"
+            type="text"
+            onChange={onChangeAlamat}
+            autoHeight
+          />
+          <InputItem
+            placeholder="08123456789"
+            type="number"
+            onChange={onChangeNomorHp}
+          >
+            Nomor HP (Whatsapp)
+          </InputItem>
+          <TextareaItem
+            title="Catatan"
+            placeholder="Contoh: tidak ada,tidak suka pedas/ Alergi kacang, udang, dll"
+            type="text"
+            onChange={onChangeCatatan}
+            autoHeight
+          />
+          <WingBlank>
+            <Button onClick={onClickDaftar} type="primary">
+              Daftar
+            </Button>
+            <WhiteSpace />
+          </WingBlank>
+          <p>
+            Sudah punya akun senjani ? {"  "}
+            <strong
+              className="onClikRegister"
+              onClick={() => {
+                history.push("/Login");
+              }}
+            >
+              Masuk
+            </strong>
+          </p>
+        </WingBlank>
+      </div>
     </div>
   );
 }

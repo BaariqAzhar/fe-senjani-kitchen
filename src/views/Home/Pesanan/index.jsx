@@ -3,8 +3,8 @@ import { useHistory } from "react-router-dom";
 import axios from "axios";
 import { Button, Card, WingBlank, WhiteSpace, Flex } from "antd-mobile";
 
+import "./pesanan.scss";
 import UrlApi from "./../../../UrlApi";
-import "./Pesanan.scss";
 import waktuMenu from "../../Function/waktuMenu";
 import jenisNasi from "../../Function/jenisNasi";
 import jenisPaketKupon from "../../Function/jenisPaketKupon";
@@ -57,14 +57,16 @@ const Pesanan = () => {
           />
           <Card.Body>
             <strong>{data.nama_menu}</strong>
-            <Flex clasName="flex">
-              <Flex.Item clasName="flexImg">
-                <img
-                  src={`${UrlApi}assets/fotoMenu/${data.foto_menu}`}
-                  alt=""
-                  srcset=""
-                  style={{ width: "90%" }}
-                />
+            <WhiteSpace size="lg" />
+            <Flex>
+              <Flex.Item>
+                <div style={{ display: "grid", placeItems: "center" }}>
+                  <img
+                    src={`${UrlApi}assets/fotoMenu/${data.foto_menu}`}
+                    alt=""
+                    style={{ width: "70%" }}
+                  />
+                </div>
               </Flex.Item>
               <Flex.Item className="flexDescription">
                 <p>{data.keterangan_menu}</p>
@@ -73,6 +75,7 @@ const Pesanan = () => {
                 <p>{statusPesanan(data.status_pesanan)}</p>
               </Flex.Item>
             </Flex>
+            <br />
             <Button type="primary" onClick={() => onClickLihatDetail(index)}>
               Lihat Detail
             </Button>
@@ -90,11 +93,14 @@ const Pesanan = () => {
   };
 
   return (
-    <div>
-      <WingBlank>
-        <h1>Riwayat Pesanan</h1>
-        <PesanBoxList />
-      </WingBlank>
+    <div className="grid">
+      <div className="container">
+        <WingBlank>
+          <WhiteSpace size="lg" />
+          <h1>Riwayat Pesanan</h1>
+          <PesanBoxList />
+        </WingBlank>
+      </div>
     </div>
   );
 };
