@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import axios from "axios";
 import { Button, Card, WingBlank, WhiteSpace, Flex } from "antd-mobile";
 
-import "./pesanan.scss";
+import "./Pesanan.scss";
 import UrlApi from "./../../../UrlApi";
 import waktuMenu from "../../Function/waktuMenu";
 import jenisNasi from "../../Function/jenisNasi";

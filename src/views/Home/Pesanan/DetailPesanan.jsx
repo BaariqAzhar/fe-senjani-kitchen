@@ -11,7 +11,7 @@ import statusKupon from "../../Function/statusKupon";
 import statusPesanan from "./../../Function/statusPesanan";
 import jenisPaketKupon from "./../../Function/jenisPaketKupon";
 import waktuMenu from "../../Function/waktuMenu";
-import "./pesanan.scss";
+import "./Pesanan.scss";
 
 function DetailPesanan() {
   let history = useHistory();

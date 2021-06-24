@@ -48,8 +48,16 @@ const JadwalMenu = () => {
           <div>
             <ListMenu />
           </div>
-          <div>
-            <ListMenu />
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              height: "150px",
+              backgroundColor: "#fff",
+            }}
+          >
+            <p></p>
           </div>
           <div
             style={{
@@ -60,7 +68,7 @@ const JadwalMenu = () => {
               backgroundColor: "#fff",
             }}
           >
-            Content of third tab
+            <p></p>
           </div>
           <div
             style={{
@@ -71,7 +79,7 @@ const JadwalMenu = () => {
               backgroundColor: "#fff",
             }}
           >
-            Content of fourth tab
+            <p></p>
           </div>
         </Tabs>
       </div>
