@@ -53,7 +53,7 @@ const Beranda = () => {
           </Card>
 
           <WhiteSpace size="lg" />
-          <Card>
+          {/* <Card>
             <Card.Header title="Reusable Katering" />
             <Card.Body>
               <Flex>
@@ -77,7 +77,7 @@ const Beranda = () => {
                 Beli kupon
               </Button>
             </Card.Body>
-          </Card>
+          </Card> */}
         </WingBlank>
       </div>
     </div>
